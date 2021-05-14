@@ -1,0 +1,121 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+  }
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  background: rgb(247, 247, 247);
+  border: 1px solid rgb(0, 0, 0);
+  float: left;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+  border-left: 2px solid white;
+  border-top: 2px solid white;
+  border-right: 2px solid #444;
+  border-bottom: 2px solid #444;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game-board {
+  border: 3px solid #333;
+  display: inline-block;
+}
+
+.game-status {
+  display: table;
+  border: 1px solid black;
+}
+
+.status_button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  font-size: xx-large;
+  font-weight: bold;
+  border: 1px solid black;
+  margin: 3px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mine-counter {
+  color: red;
+}
+
+.emoji {
+  /**/
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.square_revealed {
+  border: 1px solid #333;
+  background: rgb(238, 238, 238);
+}
+
+.square_bad_flag {
+  background-color: rgb(235, 147, 147);
+}
+
+.square_number_1 {
+  color: blue;
+}
+
+.square_number_2 {
+  color: green;
+}
+
+.square_number_3 {
+  color: red;
+}
+
+.square_number_3 {
+  color: navy;
+}
+
+.square_number_4 {
+  color: maroon;
+}
+
+.square_number_6 {
+  color: teal;
+}
+.square_number_7 {
+  color: black;
+}
+
+.square_number_8 {
+  color: grey;
+}
