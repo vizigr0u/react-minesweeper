@@ -4,11 +4,12 @@ import * as gameutils from '../gameutils';
 import { Levels, GameState } from '../gameConstants';
 import StepCounter from './stepcounter';
 import GameField from './gamefield';
+import GameStatusBar from './gamestatusbar';
+import LevelPicker from './levelpicker';
 
 export default class Game extends React.Component {
     constructor(props) {
         super(props);
-        console.log("new game, level: " + JSON.stringify(props.level))
         this.init(props.level);
         this.state = this.makeInitialState();
     }
@@ -25,6 +26,7 @@ export default class Game extends React.Component {
     }
 
     init(level) {
+        console.log("init(level = %s)", JSON.stringify(level));
         this.level = level;
         this.width = level.width;
         this.height = level.height;
@@ -35,6 +37,7 @@ export default class Game extends React.Component {
     }
 
     reset(level) {
+        console.log("RESET");
         this.init((level === undefined) ? this.level : level);
         this.setState(this.makeInitialState());
     }
@@ -152,24 +155,13 @@ export default class Game extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
 
-        const counter = (
-                <StepCounter
-                    currentStep={this.state.stepNumber}
-                    maxSteps={history.length - 1}
-                    onChange={(e) => this.setState({stepNumber: (e.target.value)})}
-                />
-        );
-
         return (
         <div className="game">
-            <div className="game-status">
-                <div className="mine-counter status_button">
-                    {this.numMines - this.state.numFlags}
-                </div>
-                <div className="emoji status_button" onClick={() => this.reset()}>
-                    {this.state.gameState}
-                </div>
-            </div>
+            <GameStatusBar
+                minesLeft={this.numMines - this.state.numFlags}
+                gameReset={() => this.reset()}
+                emoji={this.state.gameState}
+            />
             <div className="game-board">
                 <GameField
                     width={this.width}
@@ -180,7 +172,12 @@ export default class Game extends React.Component {
                 />
             </div>
             <div className="game-info">
-                {counter}
+                <StepCounter
+                    currentStep={this.state.stepNumber}
+                    maxSteps={history.length - 1}
+                    onChange={(e) => this.setState({stepNumber: (e.target.value)})}
+                />
+                <LevelPicker onChangeLevel={(level) => this.reset(level)} />
             </div>
         </div>
         );
