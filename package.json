@@ -12,10 +12,12 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
+  "homepage": "https://vizigr0u.github.io/react-minesweeper",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -b github-page -d build",
     "eject": "react-scripts eject"
   },
