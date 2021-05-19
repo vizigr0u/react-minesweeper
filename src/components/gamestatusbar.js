@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Timer from './timer';
 
 const GameStatusBar = (props) => {
    return (
@@ -10,17 +11,25 @@ const GameStatusBar = (props) => {
             <div className="emoji status_button" onClick={props.gameReset}>
                 {props.emoji}
             </div>
+            <Timer className="timer status_button"
+                isRunning={props.timeRunning}
+                startTime={props.startTime}
+            />
         </div>
     );
 }
 
 GameStatusBar.defaultProps = {
-    minesLeft: 0
+    minesLeft: 0,
+    timeRunning: false,
+    startTime: undefined
 }
 
 GameStatusBar.propTypes = {
     minesLeft: PropTypes.number,
-    emoji: PropTypes.string
+    emoji: PropTypes.string,
+    timeRunning: PropTypes.bool,
+    startTime: PropTypes.instanceOf(Date)
 }
 
 

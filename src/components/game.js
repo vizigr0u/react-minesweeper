@@ -21,6 +21,7 @@ export default class Game extends React.Component {
             }],
             stepNumber: 0,
             numFlags: 0,
+            startTime: undefined,
             gameState: GameState.Ongoing
         }
     }
@@ -45,25 +46,30 @@ export default class Game extends React.Component {
     handleClick(i, isFlag) {
         if (this.state.gameState !== GameState.Ongoing)
             return;
-        this.stateDirty = false;
+
+        this.boardDirty = false;
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const guesses = current.guesses.slice();
         let gameState = this.state.gameState;
-        if (this.state.stepNumber === 0) {
+
+        // init game on first click
+        if (this.state.startTime === undefined) {
+            this.setState( {startTime : new Date() } );
             this.mines = gameutils.initMines(this.numMines, this.width, this.height, i);
         }
+
         let numFlags = this.state.numFlags;
         if (isFlag === true) {
             if (guesses[i] === '🚩') {
                 guesses[i] = null;
                 numFlags--;
-                this.stateDirty = true;
+                this.boardDirty = true;
             }
             else if (guesses[i] === null) {
                 guesses[i] = '🚩';
                 numFlags++;
-                this.stateDirty = true;
+                this.boardDirty = true;
             }
             this.setState({numFlags: numFlags});
         } else {
@@ -94,7 +100,7 @@ export default class Game extends React.Component {
         if (this.checkWin(guesses)) {
             this.setState({gameState: GameState.Win});
         }
-        if (this.stateDirty === true) {
+        if (this.boardDirty === true) {
             this.setState({
                 history: history.concat([{
                     guesses: guesses,
@@ -135,17 +141,17 @@ export default class Game extends React.Component {
             return GameState.Ongoing;
         if (this.mines[i] === 9) {
             guesses[i] = '💥';
-            this.stateDirty = true;
+            this.boardDirty = true;
             return GameState.Loss;
         }
         if (this.mines[i] === 0) {
             guesses[i] = "";
-            this.stateDirty = true;
+            this.boardDirty = true;
             for (const neighbour of gameutils.getIndexesAround(i, this.width, this.height))
                 if (this.revealAt(guesses, neighbour) === GameState.Loss)
                     return GameState.Loss;
         } else {
-            this.stateDirty = true;
+            this.boardDirty = true;
             guesses[i] = this.mines[i];
         }
         return GameState.Ongoing;
@@ -161,6 +167,8 @@ export default class Game extends React.Component {
                 minesLeft={this.numMines - this.state.numFlags}
                 gameReset={() => this.reset()}
                 emoji={this.state.gameState}
+                timeRunning={this.state.startTime !== undefined && this.state.gameState === GameState.Ongoing }
+                startTime={this.state.startTime}
             />
             <div className="game-board">
                 <GameField
@@ -190,6 +198,7 @@ Game.defaultProps = {
 
 Game.propTypes = {
     level: PropTypes.exact({
+        name: PropTypes.string,
         mines: PropTypes.number,
         width: PropTypes.number,
         height: PropTypes.number,
