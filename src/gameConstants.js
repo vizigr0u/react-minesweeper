@@ -24,3 +24,5 @@ export const GameState = {
     Loss: '💀',
     Win: '😎'
 };
+
+export const MaxTime = 999;
