@@ -3,6 +3,5 @@ features:
 - highscores?
 - add link to github repo
 bugs:
-- display 0 timer on new game
 - lock/hide history during play?
 - update Readme.md
