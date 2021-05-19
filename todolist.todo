@@ -1,0 +1,6 @@
+features:
+- highlight nearby unrevealed cells on number-click
+- highscores?
+bugs:
+- display 0 timer on new game
+- lock/hide history during play?
