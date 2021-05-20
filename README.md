@@ -1,5 +1,9 @@
 # React-Minesweeper
 
+Play the game here: https://vizigr0u.github.io/react-minesweeper/
+
+![Game capture](/react-minesweeper-2021-05-20-010429.png)
+
 A version of the old-timey minesweeper game that runs in the browser using only html/css/javascript (react).
 
 ## Building and running
