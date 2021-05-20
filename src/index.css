@@ -118,3 +118,16 @@ ol, ul {
 .square_number_8 {
   color: grey;
 }
+
+#footer {
+  margin-top: 30px;
+}
+
+#footer a {
+  font-size: large;
+}
+
+#footer img {
+  width: 25px;
+  height: 25px;
+}
