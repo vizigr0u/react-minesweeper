@@ -1,6 +1,9 @@
 features:
-- highscores?
-- add link to github repo
+    - highscores
+    - add link to github repo
+tech-debt:
+    - address react warning about updateTime
+    - better flood-fill algorithm
 bugs:
-- lock/hide history during play?
-- update Readme.md
+    - lock/hide history during play?
+    - update Readme.md
