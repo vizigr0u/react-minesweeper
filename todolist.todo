@@ -1,4 +1,5 @@
 features:
+    - custom games
     - highscores
     - add link to github repo
 tech-debt:
