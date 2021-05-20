@@ -24,7 +24,7 @@ function Timer(props) {
         if (props.startTime === undefined && !props.isRunning)
             return 0;
         const msElapsed = +new Date() - +props.startTime;
-        return Math.min(MaxTime, Math.floor(msElapsed / 100));
+        return Math.min(MaxTime * 10, Math.floor(msElapsed / 100));
     }
 
     return (
