@@ -87,9 +87,9 @@ export default class Game extends React.Component {
                 }
                 if (numUnguessedAround > 0) {
                     if (numGuessedMinesAround >= numMinesToFind)
-                    for (const neighbour of gameutils.getIndexesAround(i, this.width, this.height))
-                        if (guesses[neighbour] === null && (gameState = this.revealAt(guesses, neighbour)) === GameState.Loss)
-                            break;
+                        for (const neighbour of gameutils.getIndexesAround(i, this.width, this.height))
+                            if (guesses[neighbour] === null && (gameState = this.revealAt(guesses, neighbour)) === GameState.Loss)
+                                break;
                 }
             }
         }

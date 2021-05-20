@@ -1,5 +1,4 @@
 features:
-- highlight nearby unrevealed cells on number-click
 - highscores?
 - add link to github repo
 bugs:
