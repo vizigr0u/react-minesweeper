@@ -22,7 +22,7 @@ export default class Game extends React.Component {
             stepNumber: 0,
             numFlags: 0,
             startTime: undefined,
-            gameState: GameState.Ongoing
+            gameState: GameState.NewGame
         }
     }
 
@@ -44,18 +44,19 @@ export default class Game extends React.Component {
     }
 
     handleClick(i, isFlag) {
-        if (this.state.gameState !== GameState.Ongoing)
+        let gameState = this.state.gameState;
+        if (gameState !== GameState.Ongoing && gameState !== GameState.NewGame)
             return;
 
         this.boardDirty = false;
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const guesses = current.guesses.slice();
-        let gameState = this.state.gameState;
+        
 
         // init game on first click
-        if (this.state.startTime === undefined) {
-            this.setState( {startTime : new Date() } );
+        if (gameState === GameState.NewGame) {
+            this.setState( {startTime : new Date(), gameState: GameState.Ongoing } );
             this.mines = gameutils.initMines(this.numMines, this.width, this.height, i);
         }
 
@@ -166,8 +167,7 @@ export default class Game extends React.Component {
             <GameStatusBar
                 minesLeft={this.numMines - this.state.numFlags}
                 gameReset={() => this.reset()}
-                emoji={this.state.gameState}
-                timeRunning={this.state.startTime !== undefined && this.state.gameState === GameState.Ongoing }
+                gameState={this.state.gameState}
                 startTime={this.state.startTime}
             />
             <div className="game-board">

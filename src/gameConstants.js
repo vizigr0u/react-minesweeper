@@ -20,9 +20,10 @@ export const Levels = {
 };
 
 export const GameState = {
-    Ongoing: '🙂',
-    Loss: '💀',
-    Win: '😎'
+    NewGame: 0,
+    Ongoing: 1,
+    Loss: 2,
+    Win: 3
 };
 
 export const MaxTime = 999;
