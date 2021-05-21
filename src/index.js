@@ -12,7 +12,7 @@ ReactDOM.render(
     <Game level={Levels.Easy} />
     <div id="footer">
         <a href="https://github.com/vizigr0u/react-minesweeper">
-            <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
+            <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" alt="github-octocat" />
             Clone on github
         </a>
     </div>
