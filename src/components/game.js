@@ -6,6 +6,7 @@ import StepCounter from './stepcounter';
 import GameField from './gamefield';
 import GameStatusBar from './gamestatusbar';
 import LevelPicker from './levelpicker';
+import BasicSolver from '../solver/basicsolver';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -40,6 +41,10 @@ export default class Game extends React.Component {
         console.log("RESET");
         this.init((level === undefined) ? this.level : level);
         this.setState(this.makeInitialState());
+    }
+
+    onSolverHints(hints) {
+        this.setState({hints: hints});
     }
 
     handleClick(i, isFlag) {
@@ -161,6 +166,15 @@ export default class Game extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
 
+        const solver = (this.state.gameState === GameState.NewGame || this.state.gameState === GameState.Ongoing) ?
+            (
+                <div className="game-solver">
+                    <input type="button"
+                    onClick={() => BasicSolver.solve(current.guesses, this.width, (hints) => this.onSolverHints(hints) )}
+                    value="basic solver" />
+                </div>
+            ) : null;
+
         return (
         <div className="game">
             <GameStatusBar
@@ -178,6 +192,7 @@ export default class Game extends React.Component {
                     onContextMenu={(i) => {this.handleClick(i, true);}}
                 />
             </div>
+            {solver}
             <div className="game-info">
                 <StepCounter
                     currentStep={this.state.stepNumber}
