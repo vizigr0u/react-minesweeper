@@ -27,13 +27,12 @@ export default class Game extends React.Component {
     }
 
     init(level) {
-        console.log("init(level = %s)", JSON.stringify(level));
         this.level = level;
         this.width = level.width;
         this.height = level.height;
         this.numCells = this.width * this.height;
         this.numMines = level.mines;
-        console.log("init: %d×%d cells: %d mines: %d", this.width, this.height, this.numCells, this.numMines)
+        console.log("init %s: %d×%d, %d cells, %d mines", level.name, this.width, this.height, this.numCells, this.numMines)
         console.assert(this.numCells > 0);
     }
 
