@@ -6,6 +6,12 @@ function Timer(props) {
     const [time, setTime] = useState(0);
 
     useEffect(() => {
+        const updateTime = () => {
+            if (props.startTime === undefined && !props.isRunning)
+                return 0;
+            const msElapsed = +new Date() - +props.startTime;
+            return Math.min(MaxTime * 10, Math.floor(msElapsed / 100));
+        };
         let timer;
         if (props.isRunning) {
             timer=setTimeout(() => {
@@ -18,14 +24,7 @@ function Timer(props) {
             if (timer !== undefined)
                 clearTimeout(timer);
         };
-    }, [props.isRunning, updateTime]);
-
-    function updateTime() {
-        if (props.startTime === undefined && !props.isRunning)
-            return 0;
-        const msElapsed = +new Date() - +props.startTime;
-        return Math.min(MaxTime * 10, Math.floor(msElapsed / 100));
-    }
+    }, [props.isRunning, props.startTime]);
 
     return (
     <div className={props.className}>
