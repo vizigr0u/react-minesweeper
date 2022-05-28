@@ -10,7 +10,7 @@ const getEmoji = (gameState) => {
         case GameState.Win:
             return '😎';
         default:
-            return'🙂';
+            return '🙂';
     };
 }
 
