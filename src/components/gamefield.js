@@ -37,15 +37,13 @@ class GameField extends React.Component {
 
     render() {
         return (
-        <div>
-            {Array.from(Array(this.props.height).keys()).map(y => {
+            Array.from(Array(this.props.height).keys()).map(y => {
                 return (
                 <div key={y} className="board-row">
                     {Array.from(Array(this.props.width).keys()).map(x => this.renderSquare(x + y * this.props.width) )}
                 </div>);
                 }
-            )}
-        </div>
+            )
         );
     }
 }

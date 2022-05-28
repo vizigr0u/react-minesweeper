@@ -7,11 +7,54 @@ ol, ul {
   padding-left: 30px;
 }
 
-.board-row:after {
+.game {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.game-status {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mine-counter {
+  color: red;
+}
+
+/*.emoji {
+}*/
+
+/* .timer {
+} */
+
+.game-board {
+  border: 3px solid #333;
+  flex-shrink: 1;
+}
+
+.game-info {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.level-picker {
+  display: flex;
+  justify-content: space-around;
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .board-row:after {
   clear: both;
   content: "";
   display: table;
-}
+} */
 
 .status {
   margin-bottom: 10px;
@@ -44,16 +87,6 @@ ol, ul {
   background: #ddd;
 }
 
-.game-board {
-  border: 3px solid #333;
-  display: inline-block;
-}
-
-.game-status {
-  display: table;
-  border: 1px solid black;
-}
-
 .status_button {
   display: inline-flex;
   justify-content: center;
@@ -66,17 +99,6 @@ ol, ul {
   margin: 3px;
   text-align: center;
   vertical-align: middle;
-}
-
-.mine-counter {
-  color: red;
-}
-
-/*.emoji {
-}*/
-
-.game-info {
-  margin-left: 20px;
 }
 
 .square_revealed {

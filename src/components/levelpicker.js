@@ -17,7 +17,7 @@ const LevelPicker = (props) => {
         },
     ]
     return (
-        <div>
+        <div className='level-picker'>
             {levels.map(l => {
                 return (
                     <button onClick={() => props.onChangeLevel(l.level)} key={l.name}>
