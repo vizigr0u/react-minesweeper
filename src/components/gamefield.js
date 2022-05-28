@@ -25,7 +25,6 @@ class GameField extends React.Component {
     peekAt(i) {
         if (Number.isInteger(this.props.guesses[i])) {
             const cellsPeaked = [];
-            console.log("peek at " + i);
             for (const neighbour of gameutils.getIndexesAround(i, this.props.width, this.props.height))
                 cellsPeaked.push(neighbour);
             this.setState( { cellsPeaked: cellsPeaked });
