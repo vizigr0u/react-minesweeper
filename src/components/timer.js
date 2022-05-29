@@ -14,7 +14,7 @@ function Timer(props) {
         };
         let timer;
         if (props.isRunning) {
-            timer=setTimeout(() => {
+            timer=setInterval(() => {
                 setTime(updateTime());
             }, 100);
         } else
@@ -22,7 +22,7 @@ function Timer(props) {
         // Clear timeout if the component is unmounted
         return () => {
             if (timer !== undefined)
-                clearTimeout(timer);
+                clearInterval(timer);
         };
     }, [props.isRunning, props.startTime]);
 
