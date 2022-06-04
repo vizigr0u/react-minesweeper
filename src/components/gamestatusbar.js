@@ -14,12 +14,20 @@ const getEmoji = (gameState) => {
     };
 }
 
+function pad(num, size) {
+    var s = "0000" + num;
+    return s.substring(s.length-size);
+}
+
 const GameStatusBar = (props) => {
     const emoji = getEmoji(props.gameState);
     return (
         <div className="game-status">
             <div className="mine-counter status_button">
-                {props.minesLeft}
+                <span className="seven-segment-background">88</span>
+                <span className="mine-counter-text">
+                    {pad(props.minesLeft, 2)}
+                </span>
             </div>
             <div className="emoji status_button" onClick={props.gameReset}>
                 {emoji}

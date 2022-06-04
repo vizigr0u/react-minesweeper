@@ -1,7 +1,7 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-  }
+  font: 14px Arial, Helvetica, sans-serif;
+  margin: 20px;
+}
 
 ol, ul {
   padding-left: 30px;
@@ -18,16 +18,6 @@ ol, ul {
   flex-direction: row;
   justify-content: space-between;
 }
-
-.mine-counter {
-  color: red;
-}
-
-/*.emoji {
-}*/
-
-/* .timer {
-} */
 
 .game-board {
   border: 3px solid #333;
@@ -49,12 +39,6 @@ ol, ul {
   display: flex;
   flex-direction: row;
 }
-
-/* .board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-} */
 
 .status {
   margin-bottom: 10px;
@@ -152,4 +136,47 @@ ol, ul {
 #footer img {
   width: 25px;
   height: 25px;
+}
+
+/* win98 style */
+
+@font-face {
+  font-family: "DSEG7B";
+  src: url('fonts/DSEG7Classic-Bold.woff2') format('woff2'), 
+    url('fonts/DSEG7Classic-Bold.woff') format('woff');
+    font-weight: bold;
+}
+
+/* :root.win98 {
+} */
+
+:root.win98 .status_button {
+  min-width: initial;
+  height: initial;
+  border: initial;
+}
+
+:root.win98 .emoji {
+  background-color: #ddd;
+}
+
+:root.win98 .mine-counter,
+:root.win98 .timer {
+	z-index:100;
+  font-family: "DSEG7B";
+  color: rgb(255, 0, 0);
+  background-color: rgb(0, 0, 0);
+  letter-spacing: -1px;
+}
+
+.seven-segment-background {
+  display: none;
+}
+
+:root.win98 .seven-segment-background {
+  display: block;
+	z-index:50;
+	position:absolute;
+  font-family: "DSEG7B";
+	color: rgba(255, 0, 0, 0.35);
 }

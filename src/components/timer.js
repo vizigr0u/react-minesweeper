@@ -26,9 +26,17 @@ function Timer(props) {
         };
     }, [props.isRunning, props.startTime]);
 
+    function pad(num, size) {
+        var s = "0000" + num;
+        return s.substring(s.length-size);
+    }
+
     return (
     <div className={props.className}>
-        {(time/10).toLocaleString(undefined, { minimumFractionDigits: 1}) }
+        <span className="seven-segment-background">888.8</span>
+        <span className="timer-text">
+            {pad((time/10).toLocaleString(undefined, { minimumFractionDigits: 1}),5) }
+        </span>
     </div>
     );
 }
