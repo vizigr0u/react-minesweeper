@@ -13,12 +13,13 @@ class GameField extends React.Component {
     renderSquare(i) {
         return <Cell
             key={i}
-            value={this.props.guesses[i]}
+            value={this.props.guesses[i] ?? this.props.hints[i]}
             onClick={(e) => { this.props.onClick(i); e.preventDefault(); }}
             onContextMenu={(e) => { this.props.onContextMenu(i); e.preventDefault(); }}
             onMouseDown={(e) => { this.peekAt(i); e.preventDefault(); }}
             onMouseUp={(e) => { this.stopPeek(); e.preventDefault(); }}
             peekedAt={this.state.cellsPeaked.includes(i)}
+            isHint={this.props.hints[i] !== undefined}
         />;
     }
 
@@ -53,11 +54,15 @@ class GameField extends React.Component {
 
 GameField.defaultProps = {
     height: Levels.Easy.height,
-    width: Levels.Easy.width
+    width: Levels.Easy.width,
+    hints: [],
 }
+
 GameField.propTypes = {
     height: PropTypes.number,
     width: PropTypes.number,
+    guesses: PropTypes.array,
+    hints: PropTypes.array,
 }
 
 export default GameField;

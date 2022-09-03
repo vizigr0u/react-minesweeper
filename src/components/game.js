@@ -20,6 +20,7 @@ export default class Game extends React.Component {
             history: [{
                 guesses: Array(this.numCells).fill(null)
             }],
+            cellHints: [],
             stepNumber: 0,
             numFlags: 0,
             startTime: undefined,
@@ -38,13 +39,19 @@ export default class Game extends React.Component {
     }
 
     reset(level) {
-        console.log("RESET");
         this.init((level === undefined) ? this.level : level);
         this.setState(this.makeInitialState());
     }
 
     onSolverHints(hints) {
-        this.setState({hints: hints});
+        let cellHints = [];
+        if (Array.isArray(hints) && hints.length > 0) {
+            cellHints = Array(this.numCells).fill(null);
+            hints.forEach( ([i, ratio]) => {
+                cellHints[i] = ratio;
+            });
+        }
+        this.setState({cellHints: cellHints});
     }
 
     handleClick(i, isFlag) {
@@ -188,6 +195,7 @@ export default class Game extends React.Component {
                     width={this.width}
                     height={this.height}
                     guesses={current.guesses}
+                    hints={this.state.cellHints}
                     onClick={(i) => this.handleClick(i, false)}
                     onContextMenu={(i) => {this.handleClick(i, true);}}
                 />
