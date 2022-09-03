@@ -2,5 +2,4 @@ features:
     - custom games
     - highscores
 tech-debt:
-    - address react warning about updateTime
     - better flood-fill algorithm
