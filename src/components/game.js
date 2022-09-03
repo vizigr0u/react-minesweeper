@@ -160,6 +160,7 @@ export default class Game extends React.Component {
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
+        const showSteps = this.state.gameState === GameState.Loss || this.state.gameState === GameState.Win;
 
         return (
         <div className="game">
@@ -181,7 +182,7 @@ export default class Game extends React.Component {
             <div className="game-info">
                 <StepCounter
                     currentStep={this.state.stepNumber}
-                    maxSteps={history.length - 1}
+                    maxSteps={showSteps ? history.length - 1 : 0}
                     onChange={(e) => this.setState({stepNumber: (e.target.value)})}
                 />
                 <LevelPicker onChangeLevel={(level) => this.reset(level)} />

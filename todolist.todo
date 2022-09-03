@@ -4,5 +4,3 @@ features:
 tech-debt:
     - address react warning about updateTime
     - better flood-fill algorithm
-bugs:
-    - lock/hide history during play?
